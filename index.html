@@ -1,352 +1,208 @@
 <!DOCTYPE html>
-<html lang="ms" class="dark">
+<html lang="ms">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>MLBB AI LIVE COACH — CYBER EDITION (POCO C75)</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter & Orbitron / JetBrains Mono -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&family=Orbitron:wght@600;700;800;900&display=swap" rel="stylesheet">
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Orbitron', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                    colors: {
-                        cyber: {
-                            bg: '#06080F',
-                            panel: '#0D121F',
-                            card: '#12192B',
-                            border: '#1E2942',
-                            cyan: '#00F0FF',
-                            violet: '#8B5CF6',
-                            emerald: '#10B981',
-                            amber: '#F59E0B',
-                            rose: '#F43F5E'
-                        }
-                    },
-                    boxShadow: {
-                        'neon-cyan': '0 0 18px rgba(0, 240, 255, 0.25)',
-                        'neon-violet': '0 0 18px rgba(139, 92, 246, 0.25)',
-                        'neon-emerald': '0 0 15px rgba(16, 185, 129, 0.25)'
-                    }
-                }
-            }
-        }
-    </script>
-
-    <style>
-        body {
-            background-color: #06080F;
-            background-image: 
-                radial-gradient(circle at 12% 15%, rgba(0, 240, 255, 0.08) 0%, transparent 35%),
-                radial-gradient(circle at 88% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 40%),
-                linear-gradient(rgba(30, 41, 66, 0.2) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(30, 41, 66, 0.2) 1px, transparent 1px);
-            background-size: 100% 100%, 100% 100%, 28px 28px, 28px 28px;
-            color: #E2E8F0;
-            overflow-x: hidden;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #090D16;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #1E2942;
-            border-radius: 9999px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #00F0FF;
-        }
-
-        .cyber-glass {
-            background: rgba(13, 18, 31, 0.88);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(30, 41, 66, 0.85);
-        }
-
-        .cyber-card {
-            background: linear-gradient(145deg, rgba(18, 25, 43, 0.95) 0%, rgba(11, 16, 28, 0.95) 100%);
-            border: 1px solid rgba(30, 41, 66, 0.9);
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .cyber-card:hover {
-            border-color: rgba(0, 240, 255, 0.45);
-        }
-
-        .cyber-gradient-text {
-            background: linear-gradient(90deg, #00F0FF 0%, #A78BFA 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .pulse-ring {
-            animation: pulseRing 2s infinite;
-        }
-
-        @keyframes pulseRing {
-            0% { box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.5); }
-            70% { box-shadow: 0 0 0 10px rgba(0, 240, 255, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(0, 240, 255, 0); }
-        }
-
-        .scanline {
-            position: relative;
-            overflow: hidden;
-        }
-        .scanline::after {
-            content: "";
-            position: absolute;
-            top: -100%;
-            left: 0;
-            width: 100%;
-            height: 8px;
-            background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.6), transparent);
-            animation: scanMove 3.5s linear infinite;
-            pointer-events: none;
-        }
-        @keyframes scanMove {
-            0% { top: -10%; }
-            100% { top: 110%; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SYNO MLBB v3.0 - Fully Function</title>
+<style>
+*{box-sizing:border-box;font-family:Arial,sans-serif}
+body{margin:0;background:#0a0a1a;color:white;padding:12px}
+.top{display:flex;justify-content:space-between;align-items:center;background:#1a1a2e;padding:12px;border-radius:14px}
+.logo{font-weight:900;font-size:18px} .logo span{color:#00e5ff}
+.badge{background:#ff2d78;padding:4px 8px;border-radius:20px;font-size:11px}
+.tabs{display:flex;gap:8px;margin:12px 0}
+.tab{flex:1;padding:12px;text-align:center;border-radius:12px;background:#1e1e35;cursor:pointer;border:2px solid transparent}
+.tab.active{background:#00e5ff;color:black;font-weight:bold}
+.card{background:#151528;padding:14px;border-radius:14px;margin-bottom:12px;border:1px solid #2a2a4a}
+h2{margin:5px 0} h2 span{color:#00e5ff}
+.phase{display:flex;gap:6px;margin:10px 0}
+.phase button{flex:1;padding:10px;border-radius:20px;border:none;background:#2a2a4a;color:white;cursor:pointer}
+.phase button.active{background:#00e5ff;color:black;font-weight:bold}
+.btn{width:100%;padding:13px;border:none;border-radius:12px;background:#00e5ff;font-weight:bold;font-size:15px;cursor:pointer;margin-top:8px}
+.btn2{background:#ff2d78;color:white}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mini{background:#1e1e35;padding:12px;border-radius:12px}
+.mini b{font-size:22px;color:#00e5ff}
+select,input{width:100%;padding:12px;border-radius:10px;border:none;margin-top:8px;background:#2a2a4a;color:white}
+.hero-btn{padding:8px 10px;margin:4px 4px 0 0;border-radius:20px;border:1px solid #00e5ff;background:transparent;color:white;cursor:pointer}
+.hero-btn.active{background:#00e5ff;color:black}
+.hidden{display:none}
+.spell{display:flex;justify-content:space-between;align-items:center;background:#1e1e35;padding:10px;border-radius:10px;margin-top:8px}
+.spell button{padding:8px 12px;border-radius:8px;border:none;background:#ff2d78;color:white;cursor:pointer}
+.small{font-size:12px;color:#aaa}
+</style>
 </head>
-<body class="min-h-screen flex flex-col lg:flex-row selection:bg-cyber-cyan selection:text-slate-950">
+<body>
 
-    <!-- NOTIFICATION TOAST -->
-    <div id="toastContainer" class="fixed top-4 right-4 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none px-4 sm:px-0"></div>
+<div class="top">
+<div><div class="logo">SYNO <span>MLBB</span> v3.0</div><div class="small">AI LIVE COACH • CYBER • SEMUA FUNCTION</div></div>
+<div class="badge">LIVE</div>
+</div>
 
-    <!-- SIDEBAR NAVIGATION (DESKTOP) & HEADER (MOBILE) -->
-    <aside class="w-full lg:w-64 cyber-glass lg:min-h-screen lg:sticky lg:top-0 z-40 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-cyber-border shrink-0">
-        <div>
-            <!-- Brand Header -->
-            <div class="p-4 lg:p-5 flex items-center justify-between border-b border-cyber-border/80">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyber-cyan/20 to-cyber-violet/30 border border-cyber-cyan/50 flex items-center justify-center shadow-neon-cyan">
-                        <i data-lucide="cpu" class="w-6 h-6 text-cyber-cyan"></i>
-                    </div>
-                    <div>
-                        <div class="font-display font-bold text-sm tracking-wider text-white flex items-center gap-1.5">
-                            SYNO<span class="text-cyber-cyan">MLBB</span>
-                            <span class="text-[10px] font-mono bg-cyber-violet/20 text-purple-300 border border-cyber-violet/40 px-1.5 py-0.5 rounded">v2.5</span>
-                        </div>
-                        <p class="text-[11px] text-slate-400 font-medium">AI LIVE COACH • CYBER</p>
-                    </div>
-                </div>
+<div class="tabs">
+<div class="tab active" id="tabDash" onclick="showPage('dash')">Dashboard Utama</div>
+<div class="tab" id="tabScan" onclick="showPage('scan')">Hero & Item Scanner</div>
+</div>
 
-                <!-- Quick Voice Toggle on Mobile -->
-                <button onclick="toggleVoiceAuto()" id="mobileVoiceBtn" class="lg:hidden px-3 py-2 rounded-xl bg-cyber-card border border-cyber-cyan/40 text-cyber-cyan flex items-center gap-1.5 text-xs font-semibold">
-                    <i data-lucide="volume-2" class="w-4 h-4"></i>
-                    <span>Suara AI</span>
-                </button>
-            </div>
+<!-- DASHBOARD -->
+<div id="page-dash">
+<div class="card">
+<h2>Selamat Kembali, <span>Komander Taktikal</span></h2>
+<div class="small">Pembantu Analisis Masa Nyata • Bahasa Melayu • Tiada Modifikasi Game</div>
+<div class="phase">
+<button id="pEarly" class="active" onclick="setPhase('early')">Early (0-5m)</button>
+<button id="pMid" onclick="setPhase('mid')">Mid (5-12m)</button>
+<button id="pLate" onclick="setPhase('late')">Late (12m+)</button>
+</div>
+<button class="btn" onclick="speakCoach()">🔊 Suara Coach (BM)</button>
+</div>
 
-            <!-- Navigation Tabs -->
-            <nav class="p-2 lg:p-3 flex lg:flex-col gap-1.5 overflow-x-auto no-scrollbar">
-                <button onclick="switchTab('dashboard')" id="nav-dashboard" class="nav-btn active-nav flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap bg-gradient-to-r from-cyber-cyan/20 to-cyber-violet/10 text-cyber-cyan border border-cyber-cyan/40 shadow-neon-cyan">
-                    <i data-lucide="layout-dashboard" class="w-4 h-4 shrink-0"></i>
-                    <span>Dashboard Utama</span>
-                </button>
+<div class="card">
+<b>SIARAN JURULATIH SUARA AI</b>
+<p id="tipText">"Berhati-hati, Yu Zhong mempunyai sustain tinggi. Bina Sea Halberd atau Glowing Wand sebelum teamfight Turtle."</p>
+<div style="display:flex;gap:8px">
+<button class="btn" style="flex:1;background:#333" onclick="nextTip()">Tip Lain</button>
+<button class="btn" style="flex:1" onclick="speakCoach()">Ulang Suara</button>
+</div>
+</div>
 
-                <button onclick="switchTab('vision')" id="nav-vision" class="nav-btn flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-medium text-slate-300 hover:text-white hover:bg-cyber-card/80 border border-transparent transition-all whitespace-nowrap">
-                    <i data-lucide="scan-eye" class="w-4 h-4 shrink-0 text-cyber-cyan"></i>
-                    <span>Hero & Item Scanner</span>
-                </button>
+<div class="grid">
+<div class="mini">Skor Taktikal<br><b id="skor">86</b><br><span style="color:#00ff88">Optimum +12%</span><br><button class="btn" onclick="tambahSkor()">+ Skor</button></div>
+<div class="mini">Kadar Counter Build<br><b id="counterRate">92.4%</b><br><span class="small" id="counterDesc">Anti-Heal & Pen Aktif</span></div>
+<div class="mini">Fokus Objektif<br><b id="objektif">TURTLE</b><br><span class="small" id="objektifDesc">Kumpul 4 orang sebelum 2:00</span></div>
+<div class="mini">Fasa Semasa<br><b id="fasaLabel">EARLY</b><br><span class="small">Tekan Early/Mid/Late kat atas</span></div>
+</div>
 
-                <button onclick="switchTab('counter')" id="nav-counter" class="nav-btn flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-medium text-slate-300 hover:text-white hover:bg-cyber-card/80 border border-transparent transition-all whitespace-nowrap">
-                    <i data-lucide="shield-alert" class="w-4 h-4 shrink-0 text-cyber-violet"></i>
-                    <span>Build Counter AI</span>
-                </button>
+<div class="card">
+<b>Spell Musuh Cooldown - Tekan Bila Musuh Guna Spell</b>
+<div class="spell"><span>🔥 Flicker - MM</span><span id="cd-flicker">Sedia</span><button onclick="startCD('flicker',120)">Guna</button></div>
+<div class="spell"><span>⚡ Retribution - Jungler</span><span id="cd-retri">Sedia</span><button onclick="startCD('retri',60)">Guna</button></div>
+<div class="spell"><span>🛡️ Purify - Mage</span><span id="cd-purify">Sedia</span><button onclick="startCD('purify',90)">Guna</button></div>
+<div class="small" style="margin-top:8px">Countdown jalan sendiri, tak perlu refresh.</div>
+</div>
+</div>
 
-                <button onclick="switchTab('spells')" id="nav-spells" class="nav-btn flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-medium text-slate-300 hover:text-white hover:bg-cyber-card/80 border border-transparent transition-all whitespace-nowrap">
-                    <i data-lucide="timer" class="w-4 h-4 shrink-0 text-amber-400"></i>
-                    <span>Cooldown Tracker</span>
-                </button>
+<!-- SCANNER -->
+<div id="page-scan" class="hidden">
+<div class="card">
+<b>Hero & Item Scanner - Pilih Hero Musuh</b>
+<div class="small">Tekan hero musuh, terus keluar counter</div>
+<div id="heroList"></div>
+<div id="heroResult" style="margin-top:12px;background:#0a0a1a;padding:12px;border-radius:10px">Pilih hero kat atas dulu...</div>
+</div>
+<div class="card">
+<b>Cari Item Counter</b>
+<select id="itemSelect" onchange="cariItem()">
+<option value="">-- Pilih Masalah --</option>
+<option value="heal">Musuh Banyak Heal / Lifesteal</option>
+<option value="tank">Musuh Banyak Tank / Keras</option>
+<option value="burst">Musuh Burst Tinggi / Mage Kuat</option>
+<option value="speed">Musuh Laju / Banyak Attack Speed</option>
+</select>
+<div id="itemResult" style="margin-top:10px">Pilih masalah kat atas...</div>
+<button class="btn btn2" onclick="speakScanner()">🔊 Baca Counter Dengan Suara</button>
+</div>
+</div>
 
-                <button onclick="switchTab('tactical')" id="nav-tactical" class="nav-btn flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-medium text-slate-300 hover:text-white hover:bg-cyber-card/80 border border-transparent transition-all whitespace-nowrap">
-                    <i data-lucide="compass" class="w-4 h-4 shrink-0 text-emerald-400"></i>
-                    <span>AI Tactical Coach</span>
-                </button>
-
-                <button onclick="switchTab('apk')" id="nav-apk" class="nav-btn flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-medium text-slate-300 hover:text-white hover:bg-cyber-card/80 border border-transparent transition-all whitespace-nowrap">
-                    <i data-lucide="smartphone" class="w-4 h-4 shrink-0 text-pink-400"></i>
-                    <span>Seni Bina & Bina APK</span>
-                </button>
-            </nav>
-        </div>
-
-        <!-- Bottom Hardware Status Card (Desktop) -->
-        <div class="hidden lg:block p-4 space-y-3 border-t border-cyber-border/80">
-            <div class="p-3 rounded-xl bg-cyber-card border border-cyber-border">
-                <div class="flex items-center justify-between mb-1.5">
-                    <span class="text-[11px] font-mono text-slate-400">PERANTI KEDUA</span>
-                    <span class="flex items-center gap-1 text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/30">
-                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> AKTIF
-                    </span>
-                </div>
-                <div class="text-xs font-bold text-white">POCO C75 • 16GB RAM</div>
-                <div class="text-[11px] text-slate-400 mt-0.5">8GB Fizikal + 8GB Extended</div>
-                <div class="w-full bg-slate-800 h-1.5 rounded-full mt-2 overflow-hidden">
-                    <div class="bg-gradient-to-r from-cyber-cyan to-cyber-violet h-full w-4/5 rounded-full"></div>
-                </div>
-            </div>
-
-            <div class="p-2.5 rounded-xl bg-emerald-950/30 border border-emerald-500/30 flex items-start gap-2">
-                <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
-                <div class="text-[10px] text-slate-300 leading-tight">
-                    <span class="font-bold text-emerald-400 block">Mod Patuh Polisi 100%</span>
-                    Analisis berasaskan pemerhatian & screenshot. Tiada suntikan memori.
-                </div>
-            </div>
-        </div>
-    </aside>
-
-    <!-- MAIN CONTENT AREA -->
-    <main class="flex-1 p-3 sm:p-5 lg:p-6 max-w-[1600px] w-full mx-auto space-y-5">
-
-        <!-- TOP COMMAND BAR -->
-        <header class="cyber-card rounded-2xl p-3.5 sm:p-4 flex flex-col md:flex-row md:items-center justify-between gap-3">
-            <div>
-                <div class="flex items-center gap-2 flex-wrap">
-                    <h1 class="text-lg sm:text-xl font-display font-bold text-white tracking-wide">
-                        Selamat Kembali, <span class="cyber-gradient-text">Komander Taktikal</span>
-                    </h1>
-                    <span class="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-cyber-cyan/10 text-cyber-cyan border border-cyber-cyan/30">
-                        MOD SKRIN KEDUA
-                    </span>
-                </div>
-                <p class="text-xs text-slate-400 mt-0.5">
-                    Pembantu Analisis Masa Nyata Mobile Legends: Bang Bang • Bahasa Melayu • Tiada Modifikasi Game
-                </p>
-            </div>
-
-            <div class="flex flex-wrap items-center gap-2 sm:gap-3">
-                <div class="flex items-center bg-cyber-bg border border-cyber-border rounded-xl p-1 text-xs">
-                    <button onclick="setGamePhase('early')" id="phase-early" class="phase-btn px-2.5 py-1.5 rounded-lg font-semibold bg-cyber-cyan text-slate-950 transition-all">
-                        Early (0-5m)
-                    </button>
-                    <button onclick="setGamePhase('mid')" id="phase-mid" class="phase-btn px-2.5 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white transition-all">
-                        Mid (5-12m)
-                    </button>
-                    <button onclick="setGamePhase('late')" id="phase-late" class="phase-btn px-2.5 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white transition-all">
-                        Late (12m+)
-                    </button>
-                </div>
-
-                <button onclick="speakCurrentTacticalAdvice()" class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-cyber-cyan to-blue-500 text-slate-950 font-bold text-xs flex items-center gap-2 shadow-neon-cyan hover:opacity-95 active:scale-95 transition-all">
-                    <i data-lucide="mic" class="w-4 h-4"></i>
-                    <span>Suara Coach (BM)</span>
-                </button>
-
-                <button onclick="toggleVoiceAuto()" id="desktopVoiceBtn" class="hidden sm:flex px-3 py-2 rounded-xl bg-cyber-bg border border-cyber-cyan/50 text-cyber-cyan text-xs font-semibold items-center gap-1.5 hover:bg-cyber-cyan/10 transition-all">
-                    <i data-lucide="volume-2" class="w-4 h-4"></i>
-                    <span id="voiceStatusLabel">Auto-Suara: ON</span>
-                </button>
-            </div>
-        </header>
-
-        <!-- LIVE VOICE COACH BANNER -->
-        <div class="cyber-card rounded-2xl p-3 sm:px-4 border-l-4 border-l-cyber-cyan flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-gradient-to-r from-cyber-cyan/10 via-cyber-card to-cyber-violet/10">
-            <div class="flex items-start sm:items-center gap-3">
-                <div class="w-9 h-9 rounded-xl bg-cyber-cyan/20 border border-cyber-cyan flex items-center justify-center shrink-0 pulse-ring">
-                    <i data-lucide="radio" class="w-5 h-5 text-cyber-cyan"></i>
-                </div>
-                <div>
-                    <div class="flex items-center gap-2">
-                        <span class="text-[10px] font-mono uppercase tracking-wider text-cyber-cyan font-bold">SIARAN JURULATIH SUARA AI (BAHASA MELAYU)</span>
-                        <span id="speakingIndicator" class="hidden text-[10px] font-mono bg-cyber-cyan text-slate-950 px-1.5 py-0.2 rounded font-bold animate-pulse">BERCAKAP...</span>
-                    </div>
-                    <p id="liveVoiceTranscript" class="text-xs sm:text-sm font-semibold text-white mt-0.5">
-                        "Berhati-hati, Yu Zhong mempunyai sustain tinggi. Bina Sea Halberd atau Glowing Wand sebelum teamfight Turtle."
-                    </p>
-                </div>
-            </div>
-            <div class="flex items-center gap-2 shrink-0">
-                <button onclick="cyclePresetVoiceTips()" class="px-2.5 py-1.5 rounded-lg bg-cyber-bg hover:bg-slate-800 text-slate-300 border border-cyber-border text-xs flex items-center gap-1">
-                    <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i> Tip Lain
-                </button>
-                <button onclick="speakText(document.getElementById('liveVoiceTranscript').innerText)" class="px-3 py-1.5 rounded-lg bg-cyber-violet/20 hover:bg-cyber-violet/30 text-purple-200 border border-cyber-violet/50 text-xs font-semibold flex items-center gap-1">
-                    <i data-lucide="play" class="w-3.5 h-3.5"></i> Ulang Suara
-                </button>
-            </div>
-        </div>
-
-        <!-- TAB 1: DASHBOARD -->
-        <section id="tab-dashboard" class="tab-content space-y-5">
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-                <div class="cyber-card rounded-2xl p-3.5 flex items-center gap-3">
-                    <div class="w-12 h-12 rounded-xl bg-cyber-cyan/15 border border-cyber-cyan/40 flex flex-col items-center justify-center shrink-0">
-                        <span id="kpiTacticalScore" class="font-display font-extrabold text-lg text-cyber-cyan">86</span>
-                    </div>
-                    <div>
-                        <div class="text-[11px] text-slate-400">Skor Taktikal</div>
-                        <div class="text-xs font-bold text-emerald-400 flex items-center gap-1 mt-0.5">
-                            <i data-lucide="trending-up" class="w-3.5 h-3.5"></i> Optimum +12%
-                        </div>
-                    </div>
-                </div>
-                <div class="cyber-card rounded-2xl p-3.5 flex items-center gap-3">
-                    <div class="w-12 h-12 rounded-xl bg-cyber-violet/15 border border-cyber-violet/40 flex items-center justify-center shrink-0">
-                        <i data-lucide="shield-half" class="w-6 h-6 text-cyber-violet"></i>
-                    </div>
-                    <div>
-                        <div class="text-[11px] text-slate-400">Kadar Counter Build</div>
-                        <div id="kpiCounterRate" class="text-base font-display font-bold text-white">92.4%</div>
-                        <div class="text-[10px] text-purple-300">Anti-Heal & Pen Aktif</div>
-                    </div>
-                </div>
-                <div class="cyber-card rounded-2xl p-3.5 flex items-center gap-3">
-                    <div class="w-12 h-12 rounded-xl bg-amber-500/15 border border-amber-500/40 flex items-center justify-center shrink-0">
-                        <i data-lucide="flame" class="w-6 h-6 text-amber-400"></i>
-                    </div>
-                    <div>
-                        <div class="text-[11px] text-slate-400">Spell Musuh Cooldown</div>
-                        <div id="kpiSpellsDown" class="text-base font-display font-bold text-white">0 / 5</div>
-                        <div class="text-[10px] text-amber-300">Anggaran Pemerhatian</div>
-                    </div>
-                </div>
-                <div class="cyber-card rounded-2xl p-3.5 flex items-center gap-3">
-                    <div class="w-12 h-12 rounded-xl bg-emerald-500/15 border border-emerald-500/40 flex items-center justify-center shrink-0">
-                        <i data-lucide="swords" class="w-6 h-6 text-emerald-400"></i>
-                    </div>
-                    <div>
-                        <div class="text-[11px] text-slate-400">Fokus Objektif</div>
-                        <div id="kpiObjectiveStatus" class="text-sm font-display font-bold text-white">TURTLE / ROTATE</div>
-                        <div class="text-[10px] text-emerald-300">Sedia Setup</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <script>
-        // Init icons
-        lucide.createIcons();
-        function switchTab(id){ 
-            document.querySelectorAll('.tab-content').forEach(el=>el.classList.add('hidden'));
-            let t = document.getElementById('tab-'+id);
-            if(t) t.classList.remove('hidden');
-            document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active-nav'));
-            let nav = document.getElementById('nav-'+id);
-            if(nav) nav.classList.add('active-nav');
-        }
-        function setGamePhase(p){
-            document.querySelectorAll('.phase-btn').forEach(b=>{
-                b.classList
+<script>
+let phase='early';
+let skor=86;
+let tipIndex=0;
+const tips={
+early:["Berhati-hati, Yu Zhong mempunyai sustain tinggi. Bina Sea Halberd atau Glowing Wand sebelum teamfight Turtle.","Early game: Fokus last hit, jangan mati awal. Turtle pertama muncul minit 2, kumpul 4 orang.","Jangan solo push awal, musuh mudah gank. Main selamat sampai level 4."],
+mid:["Mid game: Jangan jalan sorang-sorang. Musuh suka sembunyi kat bush. Check bush dengan skill dulu.","Mid game: Ambil Turtle kedua dan push tower mid. Jangan kejar kill yang tak perlu.","Mid game: Kalau menang teamfight, terus ambil Lord, jangan recall."],
+late:["Late game: Jangan open war kalau carry tak ada. Tunggu semua cukup 5 orang.","Late game: Fokus Lord. Siapa dapat Lord, dia menang push. Jaga posisi MM.","Late game: Satu kesilapan boleh kalah. Jangan face-check bush sorang."]
+};
+const phaseData={
+early:{skor:86,counter:"92.4%",obj:"TURTLE",objDesc:"Kumpul 4 orang sebelum 2:00",fasa:"EARLY"},
+mid:{skor:78,counter:"88.1%",obj:"TURTLE / TOWER",objDesc:"Push mid, kawal map",fasa:"MID"},
+late:{skor:92,counter:"95.6%",obj:"LORD",objDesc:"All-in 5v5, jaga MM",fasa:"LATE"}
+};
+function showPage(p){
+document.getElementById('page-dash').classList.toggle('hidden',p!=='dash');
+document.getElementById('page-scan').classList.toggle('hidden',p!=='scan');
+document.getElementById('tabDash').classList.toggle('active',p==='dash');
+document.getElementById('tabScan').classList.toggle('active',p==='scan');
+window.scrollTo(0,0);
+}
+function setPhase(ph){
+phase=ph; tipIndex=0;
+['Early','Mid','Late'].forEach(x=>document.getElementById('p'+x).classList.remove('active'));
+document.getElementById('p'+ph.charAt(0).toUpperCase()+ph.slice(1)).classList.add('active');
+let d=phaseData[ph];
+skor=d.skor;
+document.getElementById('skor').innerText=skor;
+document.getElementById('counterRate').innerText=d.counter;
+document.getElementById('objektif').innerText=d.obj;
+document.getElementById('objektifDesc').innerText=d.objDesc;
+document.getElementById('fasaLabel').innerText=d.fasa;
+document.getElementById('tipText').innerText='"'+tips[ph][0]+'"';
+}
+function nextTip(){
+tipIndex=(tipIndex+1)%tips[phase].length;
+document.getElementById('tipText').innerText='"'+tips[phase][tipIndex]+'"';
+}
+function tambahSkor(){
+skor++; if(skor>100) skor=100;
+document.getElementById('skor').innerText=skor;
+}
+function speakCoach(){
+let t=document.getElementById('tipText').innerText;
+speak(t);
+}
+function speakScanner(){
+let t=document.getElementById('heroResult').innerText + ". " + document.getElementById('itemResult').innerText;
+speak(t);
+}
+function speak(text){
+if(!('speechSynthesis' in window)){alert("Phone awak tak support suara, tapi tip dah keluar kat skrin.");return;}
+window.speechSynthesis.cancel();
+let u=new SpeechSynthesisUtterance(text);
+u.lang='ms-MY'; u.rate=0.95;
+window.speechSynthesis.speak(u);
+}
+const heroes={
+"Yu Zhong":{counter:"Sea Halberd / Glowing Wand",tip:"Jangan lawan 1v1 lama. Dia heal banyak. Beli anti-heal awal."},
+"Fanny":{counter:"Dominance Ice / Anti-Heal",tip:"Jaga blue buff dia. Kalau dia tak ada energy, dia lemah."},
+"Gusion":{counter:"Athena Shield / Radiant Armor",tip:"Jangan kumpul rapat. Dia burst combo boleh bunuh 2 orang."},
+"Lesley":{counter:"Blade Armor / Wind of Nature",tip:"Jangan jalan sorang late game. Dia critical sakit."},
+"Angela":{counter:"Sea Halberd",tip:"Fokus hero yang dia ult. Jangan buang skill kat Angela sahaja."},
+"Franco":{counter:"Purify / Winter Crown",tip:"Jangan face-check bush. Beli Purify kalau selalu kena hook."}
+};
+let heroDiv=document.getElementById('heroList');
+Object.keys(heroes).forEach(h=>{
+let b=document.createElement('button');
+b.className='hero-btn'; b.innerText=h;
+b.onclick=()=>{
+document.querySelectorAll('.hero-btn').forEach(x=>x.classList.remove('active'));
+b.classList.add('active');
+let d=heroes[h];
+document.getElementById('heroResult').innerHTML="<b>Counter "+h+":</b><br>Item: "+d.counter+"<br>Tip: "+d.tip;
+};
+heroDiv.appendChild(b);
+});
+function cariItem(){
+let v=document.getElementById('itemSelect').value;
+let map={
+heal:"Beli Sea Halberd (Physical) atau Glowing Wand (Magic) atau Dominance Ice (Tank). Potong heal musuh 50%.",
+tank:"Beli Malefic Roar (Physical) atau Divine Glaive (Magic). Penetration lawan tank keras.",
+burst:"Beli Athena Shield atau Radiant Armor. Tahan burst mage.",
+speed:"Beli Dominance Ice atau Corrosion Scythe. Slow attack speed musuh."
+};
+document.getElementById('itemResult').innerText=map[v]||"Pilih masalah kat atas...";
+}
+let timers={};
+function startCD(id,sec){
+if(timers[id]) clearInterval(timers[id]);
+let left=sec;
+let el=document.getElementById('cd-'+id);
+let iv=setInterval(()=>{
+el.innerText=left+"s";
+left--;
+if(left<0){clearInterval(iv); el.innerText="Sedia ✅";}
+},1000);
+timers[id]=iv;
+}
+</script>
+</body>
+</html>
